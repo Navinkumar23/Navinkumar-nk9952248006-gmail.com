@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Filter And Search</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="/LOGO.png">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<!-- <section class="news-list">
+  <article class="news-item" data-category="Cat1">
+	<div class="thumb">
+		<img alt="Our ALT text here" title="Our title here" src="http://placehold.it/150x150">
+	</div>
+	<div class="news-txt">
+		<h3><a href="">A news title</a></h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+	</div>
+</article>
+<article class="news-item" data-category="Cat2">
+	<div class="thumb">
+		<img alt="Our ALT text here" title="Our title here" src="http://placehold.it/150x150">
+	</div>
+	<div class="news-txt">
+		<h3><a href="">A news title</a></h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+	</div>
+</article>
+<article class="news-item" data-category="Cat3">
+	<div class="thumb">
+		<img alt="Our ALT text here" title="Our title here" src="http://placehold.it/150x150">
+	</div>
+	<div class="news-txt">
+		<h3><a href="">A news title</a></h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+	</div>
+    </article>
+  </section> -->
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-12/jquery-2.0.3.min_1.js"></script>
+  <body>
+    <div class="wrapper">
+      <div id="search-container">
+        <a href="/index.html"><img src="/devrev-logo.jpg" alt=""></a>
+      </div>
+      <div id="buttons">
+        <button class="button-value" onclick="filterProduct('all')">All BOOKS</button>
+        <button class="button-value" onclick="filterProduct('TOPBOOKS')">
+          TOP SELLING BOOKS
+        </button>
+        <button class="button-value" onclick="filterProduct('STORY')">
+          STORY BOOKS
+        </button>
+        <button class="button-value" onclick="filterProduct('POPULAR')">
+          POPULAR BOOKS
+        </button>
+        <button class="button-value" onclick="filterProduct('COMIC')">
+          COMIC BOOKS
+        </button>
+      </div>
+      <div class="dropdowns">
+        <select name="sort-news" class="event-type-select" id="sort-news">
+          <option value="All">All</option>
+          <option value="ELON_MUSK">ELON MUSK</option>
+          <option value="DAVID_BENOIF">DAVID BENOIF</option>
+          <option value="JAME_JOYCE">JAME JOYCE</option>
+          <option value="DAN_BROWN">DAN BROWN</option>
+          <option value="JK_ROWLING">J.K ROWLING</option>
+          <option value="MARCEL_PROUST">MARCEL PROUST</option>
+          <option value="BEATRIX_POTTER">BEATRIX POTTER</option>
+          <option value="MAHOGANY_LBROWNE">MAHOGANY L.BROWNE</option>
+          <option value="STAN_LEE">STAN LEE</option>
+          <option value="MALCOLM">MALCOLM</option>
+        </select> 
+        <select name="sort-news" class="event-type-select" id="sort-news">
+          <option value="All">Publish-Date</option>
+          <option value="ELON_MUSK">04/08/2017</option>
+          <option value="DAVID_BENOIF">01/08/1996</option>
+          <option value="JAME_JOYCE">07/12/1920</option>
+          <option value="DAN_BROWN">18/03/2003</option>
+          <option value="MARCEL_PROUST">14/11/1913</option>
+          <option value="BEATRIX_POTTER">16/12/1901</option>
+          <option value="JK_ROWLING">26/06/1997</option>
+          <option value="MAHOGANY_LBROWNE">23/06/2012</option>
+          <option value="STAN_LEE">27/04/2012</option>
+          <option value="MALCOLM">25/07/2016</option>
+        </select> 
+        <select name="sort-news" class="event-type-select" id="sort-news">
+          <option value="All">Title</option>
+          <option value="ELON_MUSK">THE LIFE,LESSONS & RULES FOR SUCCESS</option>
+          <option value="DAVID_BENOIF">GAME OF THRONES</option>
+          <option value="JAME_JOYCE">ULYSSES</option>
+          <option value="DAN_BROWN">THE DA VINCI CODE</option>
+          <option value="MARCEL_PROUST">IN SEARCH OF LOST TIME</option>
+          <option value="BEATRIX_POTTER">THE TALE OF PETER RABBIT</option>
+          <option value="JK_ROWLING">HARRY POTTER AND THE CHAMBER OF SECRETS</option>
+          <option value="MAHOGANY_LBROWNE">365 STORIES FOR BOYS</option>
+          <option value="STAN_LEE">AVENGERS</option>
+          <option value="MALCOLM">DC COMIC</option>
+        </select> 
+      </div>
+      <div id="products" class="container">
+        <article class="card POPULAR" data-category="DAN_BROWN" data-date="1 book1" >
+            <div class="image-container">
+                <img src="THE DA VINCI CODE.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    THE DA VINCI CODE <br>18/03/2003
+                </h3>
+                
+                <h6 class="author-name">
+                    DAN BROWN
+                </h6>
+            </div>
+        </article>
+        <article class="card POPULAR" data-category="ELON_MUSK" data-date="2">
+            <div class="image-container">
+                <img src="THE LIFE,LESSONS & RULES FOR SUCCESS.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    THE LIFE,LESSONS & RULES FOR SUCCESS <br> 04/08/2017
+
+                </h3>
+                <h6 class="author-name">
+                    ELON MUSK
+                </h6>
+            </div>
+        </article>
+        <article class="card STORY" data-category="BEATRIX_POTTER" data-date="3"  >
+            <div class="image-container">
+                <img src="THE TALE OF PETER RABBIT.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    THE TALE OF PETER RABBIT <br> 16/12/1901
+
+                </h3>
+                <h6 class="author-name">
+                    BEATRIX POTTER
+                </h6>
+            </div>
+        </article>
+        <article class="card TOPBOOKS" data-category="JAME_JOYCE" >
+            <div class="image-container">
+                <img src="ULYSSES.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    ULYSSES <br> 07/12/1920
+
+                </h3>
+                <h6 class="author-name">
+                    JAME JOYCE
+                </h6>
+            </div>
+        </article>
+        <article class="card TOPBOOKS" data-category="JK_ROWLING">
+            <div class="image-container">
+                <img src="HARRY POTTER AND THE CHAMBER OF SECRETS.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    HARRY POTTER AND THE CHAMBER OF SECRETS <br> 26/06/1997
+
+                </h3>
+                <h6 class="author-name">
+                    MARCEL PROUST
+                </h6>
+            </div>
+        </article>
+        <article class="card POPULAR" data-category="MARCEL_PROUST">
+            <div class="image-container">
+                <img src="IN SEARCH OF LOST TIME.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    IN SEARCH OF LOST TIME <br> 14/11/1913
+
+                </h3>
+                <h6 class="author-name">
+                    J.K ROWLING
+                </h6>
+            </div>
+        </article>
+        <article class="card STORY" data-category="DAVID_BENOIF">
+            <div class="image-container">
+                <img src="GAME OF THRONES.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    GAME OF THRONES <br> 01/08/1996
+
+                </h3>
+                <h6 class="author-name">
+                    DAVID BENOIF
+                </h6>
+            </div>
+        </article>
+        <article class="card STORY" data-category="MALCOLM">
+            <div class="image-container">
+                <img src="DC COMIC.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    DC COMIC <br> 25/07/2016
+
+                </h3>
+                <h6 class="author-name">
+                    MALCOLM
+                </h6>
+            </div>
+        </article>
+        <article class="card COMIC" data-category="STAN_LEE">
+            <div class="image-container">
+                <img src="AVENGERS.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    AVENGERS <br> 27/04/2012
+
+                </h3>
+                <h6 class="author-name">
+                    STAN LEE
+                </h6>
+            </div>
+        </article>
+        <article class="card COMIC" data-category="MAHOGANY_LBROWNE">
+            <div class="image-container">
+                <img src="365 STORIES FOR BOYS.jpg" alt="">
+            </div>
+            <div class="container">
+                <h3 class="product-name">
+                    365 STORIES FOR BOYS <br>
+
+                </h3>
+                <h6 class="author-name">
+                    MAHOGANY L.BROWNE <br> 23/06/2012
+                </h6>
+            </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+
+  </body>
+</html>
